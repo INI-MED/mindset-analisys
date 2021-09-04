@@ -1,0 +1,15 @@
+version: "3.1"
+
+services:
+  app:
+      build: .
+      restart: on-failure
+      ports:
+        - 5000:5000
+      networks:
+        - docker_app
+      command: gunicorn -b 0.0.0.0:5000 app:app
+
+networks:
+  docker_app:
+    driver: bridge
